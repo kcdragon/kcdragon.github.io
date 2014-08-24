@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>programming and software design</title>
+    <description>I hope to cover many programming and software design topics in this blog. This will include languages (Ruby), databases (mongoDB, ElasticSearch) and programming practices (TDD, Refactoring).
+</description>
+    <link>http://mikedalton.co/</link>
+    <atom:link href="http://mikedalton.co/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Sat, 23 Aug 2014 21:06:01 -0400</pubDate>
+    <lastBuildDate>Sat, 23 Aug 2014 21:06:01 -0400</lastBuildDate>
+    <generator>Jekyll v2.3.0</generator>
+    
+      <item>
+        <title>Steel City Ruby &#39;14 Recap - Part 1</title>
+        <description>&lt;p&gt;Last weekend I attended my first Ruby conference, Steely City Ruby in Pittsburgh, PA. I learned a lot of the two-day conference and had a lot of fun along the way. Four co-workers and I left Thursday night from Philadelphia. We gave one of the speakers at the conference, &lt;a href=&quot;https://twitter.com/AustinSeraphin&quot;&gt;Austin Seraphin&lt;/a&gt;, a ride out. He is an iOS accessibility consultant and developer of some pretty cool command line tools for interacting with iOS and RubyMotion. We got into Pittsburgh late that night and went right to sleep in preparation of next morning’s talks.&lt;/p&gt;
+
+&lt;p&gt;Here are my highlights from the first day:&lt;/p&gt;
+
+&lt;h1 id=&quot;jruby-the-best-parts-by-charles-nutter&quot;&gt;JRuby: The Best Parts by Charles Nutter&lt;/h1&gt;
+&lt;p&gt;I knew a little about JRuby before the conference, but this talk by the creator of the implementation, gave me a lot of insight into the reasons someone would choose it over MRI. The first “best part” that stuck out to me was that the virtual machine it uses (the Java Virtual Machine) is more mature than any other virtual machine since it has been optimized over the years. The second “best part” was that JRuby utilizes Java threads and can run multiple threads concurrently unlike MRI. He also highlighted two common complaints with JRuby: slow startup and lack of C-extensions. He addressed slow startup by suggestion a tool called drip that preloads new JVM instances. There was an experiment at adding support for C-extensions but there were too many issues with it.&lt;/p&gt;
+
+&lt;h1 id=&quot;utils-is-a-junk-drawer-by-franklin-weber&quot;&gt;Utils is a Junk Drawer by Franklin Weber&lt;/h1&gt;
+&lt;p&gt;Franklin talked a lot about util classes that could be utilzed across projects. The example that stuck out the most to me was from Rake.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# from https://github.com/jimweirich/rake/blob/master/lib/rake/ext/string.rb&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;rake_extension&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;ext&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ext&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;newext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# from https://github.com/jimweirich/rake/blob/master/lib/rake/ext/core.rb&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Module&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;rake_extension&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;method_defined?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;vg&quot;&gt;$stderr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;WARNING: Possible conflict with Rake extension: &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
+        &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; already exists&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;yield&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The idea behind this code is to a &lt;code&gt;rake_extension&lt;/code&gt; call around a core method that you are redefining to notify the developer if the method has already been created by another Gem.&lt;/p&gt;
+
+&lt;h1 id=&quot;better-coding-with-ruby-lambdas-by-keith-bennett&quot;&gt;Better Coding with Ruby Lambdas by Keith Bennett&lt;/h1&gt;
+&lt;p&gt;Keith talked about the various uses of lambda’s and how they are under-utilized when compared to normal methods. I particularly liked his use of lambdas to create “inner methods”. This technique reminds me a lot of Scala inner methods. When a method needs to call several other function, instead of creating private methods, local lambdas can be created.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# from https://github.com/keithrbennett/ruby-lambdas-presentation-notes/blob/master/inner_functions__lambdas.rb&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SampleUsingLambdas&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;task_1&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;validate_inputs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;perform&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;cleanup&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;validate_inputs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;perform&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cleanup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# instead of&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SampleUsingLambdas&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;task_1&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;validate_inputs&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;perform&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cleanup&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;kp&quot;&gt;private&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;validate_inputs&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;perform&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;cleanup&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;After the talks were over for the day, we headed to the conference reception at PNC Park (where the Pittsburgh Pirates play). They had great food and a great view waiting for us.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/steel-city-ruby-pnc-park.jpg&quot; alt=&quot;Steel City Ruby Reception at PNC Park&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 23 Aug 2014 00:00:00 -0400</pubDate>
+        <link>http://mikedalton.co/ruby/scrc/scrc14/conference/jruby/code/functional/2014/08/23/steel-city-ruby-2014-recap-part-1.html</link>
+        <guid isPermaLink="true">http://mikedalton.co/ruby/scrc/scrc14/conference/jruby/code/functional/2014/08/23/steel-city-ruby-2014-recap-part-1.html</guid>
+        
+        
+        <category>ruby</category>
+        
+        <category>scrc</category>
+        
+        <category>scrc14</category>
+        
+        <category>conference</category>
+        
+        <category>jruby</category>
+        
+        <category>code</category>
+        
+        <category>functional</category>
+        
+      </item>
+    
+      <item>
+        <title>Cleaning up ElasticSearch indexes with RSpec and Tire</title>
+        <description>&lt;p&gt;I started a new project and had a need for cleaning up ElasticSearch indexes during testing. I wanted to do something similar to DatabaseCleaner or Mongoid.purge! in the spec_helper file.&lt;/p&gt;
+
+&lt;p&gt;The problem was that I didn’t want to delete all my indexes because I had indexes for other projects on my computer that I didn’t want to delete. I figured that I needed a way to keep track of all the indexes created and then delete them prior to the next test. I also wanted to avoid including this logic in all my spec files.&lt;/p&gt;
+
+&lt;p&gt;Here is the relevant code from my spec_helper file. This is from the RSpec.configure block.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;indexes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;meta_class&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Tire&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;meta_class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:alias_method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:__new__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;meta_class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:define_method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;indexes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;__new__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;before&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:each&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;indexes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Tire&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;__new__&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;delete&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;indexes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The idea is to keep track of all indexes by overriding the constructor to keep track of all the names. It’s not perfect; instantiating a Tire::Index does not necessarily mean it is created.&lt;/p&gt;
+
+&lt;p&gt;It seems pretty hackish and I would be really interested if someone had a better idea. One alternative that comes to mind is keeping track of all indexes that exist in config.before and then removing all the ones that aren’t in that list in config.after. With this alternative, however, you need to make sure no other indexes are being created by another application.&lt;/p&gt;
+</description>
+        <pubDate>Sun, 06 Oct 2013 00:00:00 -0400</pubDate>
+        <link>http://mikedalton.co/elasticsearch/rspec/tire/2013/10/06/cleaning-up-elasticsearch-indexes-during-testing.html</link>
+        <guid isPermaLink="true">http://mikedalton.co/elasticsearch/rspec/tire/2013/10/06/cleaning-up-elasticsearch-indexes-during-testing.html</guid>
+        
+        
+        <category>elasticsearch</category>
+        
+        <category>rspec</category>
+        
+        <category>tire</category>
+        
+      </item>
+    
+  </channel>
+</rss>
