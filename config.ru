@@ -5,7 +5,6 @@ use Rack::TryStatic,
     :urls => %w[/],
     :try => ['.html', 'index.html', '/index.html']
 
-#run lambda { [404, {'Content-Type' => 'text/html'}, ['Not Found']]}
 run ->(*) do
   [404, { 'Content-Type' => 'text/html' }, ['Not Found']]
 end
