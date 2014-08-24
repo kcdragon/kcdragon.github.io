@@ -1,0 +1,13 @@
+# Site settings
+title: programming and software design
+email: michaelcdalton@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  I hope to cover many programming and software design topics in this blog.
+  This will include languages (Ruby), databases (mongoDB, ElasticSearch) and programming practices (TDD, Refactoring).
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://mikedalton.co" # the base hostname & protocol for your site
+twitter_username: kcdragn
+github_username:  kcdragon
+
+# Build settings
+markdown: kramdown
