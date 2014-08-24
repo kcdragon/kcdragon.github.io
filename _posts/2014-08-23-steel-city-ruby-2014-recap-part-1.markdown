@@ -2,7 +2,7 @@
 layout: post
 title:  "Steel City Ruby '14 Recap - Part 1"
 date:   2014-08-23
-categories: ruby scrc scrc14 conference jruby code functional
+tags: ruby scrc scrc14 conference jruby rake functional
 ---
 Last weekend I attended my first Ruby conference, Steely City Ruby in Pittsburgh, PA. I learned a lot of the two-day conference and had a lot of fun along the way. Four co-workers and I left Thursday night from Philadelphia. We gave one of the speakers at the conference, [Austin Seraphin](https://twitter.com/AustinSeraphin), a ride out. He is an iOS accessibility consultant and developer of some pretty cool command line tools for interacting with iOS and RubyMotion. We got into Pittsburgh late that night and went right to sleep in preparation of next morning's talks.
 

@@ -2,7 +2,7 @@
 layout: post
 title:  "Cleaning up ElasticSearch indexes with RSpec and Tire"
 date:   2013-10-06
-categories: elasticsearch rspec tire
+tags: elasticsearch rspec tire
 ---
 I started a new project and had a need for cleaning up ElasticSearch indexes during testing. I wanted to do something similar to DatabaseCleaner or Mongoid.purge! in the spec_helper file.
 
