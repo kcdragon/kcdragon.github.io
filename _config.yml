@@ -11,3 +11,4 @@ github_username:  kcdragon
 
 # Build settings
 markdown: kramdown
+exclude: vendor
