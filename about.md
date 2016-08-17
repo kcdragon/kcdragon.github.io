@@ -4,4 +4,4 @@ title: About
 permalink: /about/
 ---
 
-Mike Dalton is a software developer from Philadelphia. He currently works as a Ruby on Rails developer at <a href="weblinc.com">WebLinc</a> developing eCommerce sites.
+I'm a software developer from Philadelphia currently working as a Ruby on Rails developer at [WebLinc](http://www.weblinc.com) developing e-commerce sites.
