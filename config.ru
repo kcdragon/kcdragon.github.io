@@ -1,10 +1,3 @@
-require 'rack/contrib/try_static'
+require 'rack/jekyll'
 
-use Rack::TryStatic,
-    :root => "_site",
-    :urls => %w[/],
-    :try => ['.html', 'index.html', '/index.html']
-
-run ->(*) do
-  [404, { 'Content-Type' => 'text/html' }, ['Not Found']]
-end
+run Rack::Jekyll.new

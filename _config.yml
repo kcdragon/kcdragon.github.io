@@ -14,6 +14,9 @@ markdown: kramdown
 exclude:
   - vendor
   - "*.bak"
+  - Gemfile
+  - Gemfile.lock
+  - config.ru
 permalink: pretty
 
 # Tag settings
