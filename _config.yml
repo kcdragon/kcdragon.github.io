@@ -1,5 +1,5 @@
 # Site settings
-title: programming and software design
+title: Mike Dalton
 email: michaelcdalton@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   I hope to cover many programming and software design topics in this blog.
@@ -8,6 +8,8 @@ baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://www.mikedalton.co" # the base hostname & protocol for your site
 twitter_username: kcdragon_
 github_username:  kcdragon
+linkedin_username:  michaelcdalton
+stackoverflow_username:  kcdragon
 
 # Build settings
 markdown: kramdown
