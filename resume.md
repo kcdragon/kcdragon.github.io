@@ -4,8 +4,6 @@ title: Resume
 permalink: /resume/
 ---
 
-[Download](/assets/resume.pdf/)
-
 # Summary
 Senior software developer emphasizing test-driven development and close communication with stakeholders to achieve project success. Contributor to open source projects including Rails, Mongoid, ElasticSearch and RSpec.
 
