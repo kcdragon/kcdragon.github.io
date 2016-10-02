@@ -23,9 +23,11 @@ Senior software developer emphasizing test-driven development and close communic
 
 # Experience
 
+Senior Software Engineer @ [Zoomer](http://www.zoomerdelivery.com)
+
 Lead Developer @ [Weblinc Commerce](http://www.weblinc.com)
 
-Software Enginner @ Johns Hopkins University Applied Physics Laboratory
+Software Engineer @ Johns Hopkins University Applied Physics Laboratory
 
 Research Assistant @ Drexel University Computer Science Department
 
