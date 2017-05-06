@@ -6,7 +6,7 @@ permalink: /about/
 
 <img src="../assets/me.jpg" width="200" />
 
-I'm a software developer from Philadelphia currently working with Java and React at [GrubHub].
+I'm a software developer from Philadelphia currently working with Java and React at [GrubHub](https://www.grubhub.com).
 
 I previously worked at [WebLinc](http://www.weblinc.com) developing e-commerce sites and [Zoomer](http://www.zoomerdelivery.com) developing food delivery applications.
 
