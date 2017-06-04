@@ -1,6 +1,6 @@
 # Site settings
 title: Mike Dalton
-email: michaelcdalton@gmail.com
+email:
 description: > # this means to ignore newlines until "baseurl:"
   Software developer from Philadelphia currently working with Ruby on Rails, MongoDB and ElasticSearch
 baseurl: "" # the subpath of your site, e.g. /blog/
