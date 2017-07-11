@@ -26,14 +26,12 @@ Code reviews can become contentious and focusing on defects removes a lot of sub
 
 <img src="/assets/rails-conf-2017-code-review-talk.jpg" style="width: 200px;" />
 
-If you've struggled with code reviews yourself on on your team, I recommend watching her talk.
+If you've struggled with code reviews yourself on on your team, I recommend watching her talk. You can also read more about the research she did for this talk at [bettercode.reviews](http://www.bettercode.reviews).
 
 <!-- Code Complete quote around 9:15 -->
 <!-- Read relevant sections of Code Complete -->
 <!-- "defect detection, not correction" around 12:30. if you're correcting code as you go along, you aren't checking for defects -->
 <!-- http://bettercode.reviews -->
-
-
 
 [Talk Video](https://www.youtube.com/watch?v=-6EzycFNwzY)
 
