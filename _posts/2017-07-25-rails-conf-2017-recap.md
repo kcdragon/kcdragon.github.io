@@ -33,12 +33,12 @@ If you've struggled with code reviews yourself on on your team, I recommend watc
 <!-- "defect detection, not correction" around 12:30. if you're correcting code as you go along, you aren't checking for defects -->
 <!-- http://bettercode.reviews -->
 
-[Talk Video](https://www.youtube.com/watch?v=-6EzycFNwzY)
+<!-- [Talk Video](https://www.youtube.com/watch?v=-6EzycFNwzY) -->
 
-# A clear-eyed look at Distributed Teams - [@glv](https://twitter.com/glv) and [@mariagutierrez](https://twitter.com/mariagutierrez)
+<!-- # A clear-eyed look at Distributed Teams - [@glv](https://twitter.com/glv) and [@mariagutierrez](https://twitter.com/mariagutierrez) -->
 
-[Talk Video](https://www.youtube.com/watch?v=h8MLXbdOyNs)
+<!-- [Talk Video](https://www.youtube.com/watch?v=h8MLXbdOyNs) -->
 
-# Distributed Tracing: From Theory to Practice - [@practice_cactus](https://twitter.com/practice_cactus)
+<!-- # Distributed Tracing: From Theory to Practice - [@practice_cactus](https://twitter.com/practice_cactus) -->
 
-[Talk Video](https://www.youtube.com/watch?v=-7i02Faw_KU)
+<!-- [Talk Video](https://www.youtube.com/watch?v=-7i02Faw_KU) -->
