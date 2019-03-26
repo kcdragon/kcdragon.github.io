@@ -2,7 +2,7 @@
 title: Mike Dalton
 email:
 description: > # this means to ignore newlines until "baseurl:"
-  Software developer from Philadelphia currently working with Ruby on Rails, MongoDB and ElasticSearch
+  Software developer from Philadelphia.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://www.mikedalton.co" # the base hostname & protocol for your site
 twitter_username: kcdragon_
