@@ -14,7 +14,13 @@ gem install eventmachine -v '1.0.4' -- --with-cppflags=-I/usr/local/opt/openssl/
 bundle install
 ```
 
-# Deploy with Heroku
+# Deploy with Github Pages
+
+Nothing special to do. Just push to master.
+
+This guide was helpful setting up DNS https://stackoverflow.com/questions/23375422/how-to-setup-github-pages-to-redirect-dns-requests-from-subdomain-e-g-www-to
+
+# Deploy with Heroku (OLD)
 ```
 # http://andycroll.com/ruby/serving-a-jekyll-blog-using-heroku/
 
