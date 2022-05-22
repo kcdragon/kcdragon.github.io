@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby '2.4.5'
+ruby '2.6.5'
 
 gem 'eventmachine',   '1.0.4'
 gem 'jekyll',         '3.7.4'
