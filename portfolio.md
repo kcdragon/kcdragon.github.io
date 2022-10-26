@@ -4,6 +4,17 @@ title: Portfolio
 permalink: /portfolio/
 ---
 
+# [Game Stats AI](https://gamestats.ai/)
+
+Game Stats AI is a SaaS application I've been building for game developers.
+Game developers use it to collect data from users of their games and gain insights from that data.
+For example, a developer for a digital card game can send match results to Game Stats AI and determine the win rates of each card.
+This allows the developer to address cards with higher than expected win rates.
+
+The web app is built with Ruby on Rails, PostgreSQL, Stimulus and other technologies.
+
+![Game Stats AI](/assets/game-stats-ai.png)
+
 # Computation Graph Viz
 
 [Live App](https://mikedalton.co/computation-graph-viz/), [Source Code](https://github.com/kcdragon/computation-graph-viz)
