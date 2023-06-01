@@ -13,28 +13,27 @@ It's used the same way as the built in Pagy helpers. It was easy to adapt `pagy_
 module DaisyUiPagyHelper
   def pagy_daisy_ui_nav(pagy, pagy_id: nil, link_extra: '', **vars)
     p_id   = %( id="#{pagy_id}") if pagy_id
-    link   = pagy_link_proc(pagy, link_extra: link_extra)
     p_prev = pagy.prev
     p_next = pagy.next
 
     html = +%(<nav#{p_id} class="btn-group">)
     html << if p_prev
-              %(<button class="btn">#{link.call p_prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"'}</button> )
+              %(<a class="btn" href="#{pagy_url_for(pagy, p_prev, html_escaped: true)}" aria-label="previous" #{link_extra}>#{pagy_t('pagy.nav.prev')}</a> )
             else
-              %(<button class="btn btn-disabled">#{pagy_t('pagy.nav.prev')}</button> )
+              %(<a class="btn btn-disabled" #{link_extra}>#{pagy_t('pagy.nav.prev')}</a> )
             end
     pagy.series(**vars).each do |item| # series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]
       html << case item
-              when Integer then %(<button class="btn">#{link.call item}</button> )
-              when String  then %(<button class="btn btn-active">#{pagy.label_for(item)}</button> )
-              when :gap    then %(<button class="btn btn-disabled">#{pagy_t('pagy.nav.gap')}</button> )
+              when Integer then %(<a class="btn" href="#{pagy_url_for(pagy, item, html_escaped: true)}" #{link_extra}>#{item}</a> )
+              when String  then %(<a class="btn btn-active" #{link_extra}>#{pagy.label_for(item)}</a> )
+              when :gap    then %(<a class="btn btn-disabled" #{link_extra}>#{pagy_t('pagy.nav.gap')}</a> )
               else raise InternalError, "expected item types in series to be Integer, String or :gap; got #{item.inspect}"
               end
     end
     html << if p_next
-              %(<button class="btn">#{link.call p_next, pagy_t('pagy.nav.next'), 'aria-label="next"'}</button>)
+              %(<a class="btn" href="#{pagy_url_for(pagy, p_next, html_escaped: true)}" aria-label="next" #{link_extra}>#{pagy_t('pagy.nav.next')}</a>)
             else
-              %(<button class="btn btn-disabled">#{pagy_t('pagy.nav.next')}</button>)
+              %(<a class="btn btn-disabled" #{link_extra}>#{pagy_t('pagy.nav.next')}</a>)
             end
     html << %(</nav>)
   end
