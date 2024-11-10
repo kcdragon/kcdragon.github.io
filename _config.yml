@@ -6,9 +6,11 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://www.mikedalton.co" # the base hostname & protocol for your site
 twitter_username: kcdragon_
+instagram_username: kcdragon__
 github_username:  kcdragon
 linkedin_username:  michaelcdalton
-stackoverflow_username:  kcdragon
+stackoverflow_username:  617090/kcdragon
+bluesky_username:  kcdragon.bsky.social
 
 # Build settings
 markdown: kramdown
